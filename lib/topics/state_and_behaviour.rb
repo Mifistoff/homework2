@@ -5,6 +5,7 @@ module StateAndBehaviour
   # defines class Car
   class Car
     attr_accessor :color, :model, :year, :current_speed
+    DEFAULT_PARAMS = { year: 2015, color: 'purple', model: 'skyline' }.freeze
     # create new Car object with default parameters
     def self.default_car
       new
@@ -12,9 +13,9 @@ module StateAndBehaviour
 
     # initialize for Car object
     def initialize(car_parameters)
-      @year = car_parameters[:year] || 2015
-      @color = car_parameters[:color] || 'purple'
-      @model = car_parameters[:model] || 'skyline'
+      @year = car_parameters.fetch(:year, DEFAULT_PARAMS[:year])
+      @color = car_parameters.fetch(:color, DEFAULT_PARAMS[:color])
+      @model = car_parameters.fetch(:model, DEFAULT_PARAMS[:model])
       @current_speed = 0
     end
 
